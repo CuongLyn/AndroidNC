@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "571321929217",
+    "firebase_url": "https://mypets-dc23d-default-rtdb.firebaseio.com",
+    "project_id": "mypets-dc23d",
+    "storage_bucket": "mypets-dc23d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571321929217:android:f6223038675bb8b447ba00",
+        "android_client_info": {
+          "package_name": "com.example.mypets"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBI5tUD4alX6ShVtg4CG7E4_7wfrQwkL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
