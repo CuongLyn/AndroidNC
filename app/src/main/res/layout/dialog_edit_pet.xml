@@ -1,73 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tên thú cưng"
-        android:inputType="textPersonName" />
+        android:hint="Tên thú cưng" />
 
-    <!-- Loại -->
     <EditText
         android:id="@+id/editTextLoai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Loại"
-        android:inputType="text" />
+        android:hint="Loài" />
 
-    <!-- Tuổi -->
     <EditText
         android:id="@+id/editTextTuoi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tuổi"
-        android:inputType="number" />
-
-    <!-- Giới tính -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Giới tính"
-        android:layout_marginTop="16dp" />
+        android:inputType="number"
+        android:hint="Tuổi" />
 
     <RadioGroup
         android:id="@+id/radioGroupGioiTinh"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radioButtonDuc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đực" />
 
         <RadioButton
-            android:id="@+id/radioButtonCai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cái"
-            android:layout_marginStart="16dp"/>
+            android:text="Cái" />
     </RadioGroup>
 
-    <!-- Lịch tiêm -->
     <EditText
         android:id="@+id/editTextLichTiem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Lịch tiêm"
-        android:inputType="text" />
+        android:hint="Lịch tiêm" />
 
-    <!-- Lịch kiểm tra sức khỏe -->
     <EditText
         android:id="@+id/editTextLichKiemTra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Lịch kiểm tra sức khỏe"
-        android:inputType="text" />
+        android:hint="Lịch kiểm tra sức khỏe" />
 </LinearLayout>

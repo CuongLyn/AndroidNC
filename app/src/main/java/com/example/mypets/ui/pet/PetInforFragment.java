@@ -1,4 +1,4 @@
-package com.example.mypets.ui.home;
+package com.example.mypets.ui.pet;
 
 import android.os.Bundle;
 
@@ -9,10 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mypets.R;
-import com.google.firebase.Firebase;
 
-
-public class HomeFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link PetInforFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class PetInforFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,8 +26,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-
-    public HomeFragment() {
+    public PetInforFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class HomeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment PetInforFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static PetInforFragment newInstance(String param1, String param2) {
+        PetInforFragment fragment = new PetInforFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_pet_infor, container, false);
     }
 }

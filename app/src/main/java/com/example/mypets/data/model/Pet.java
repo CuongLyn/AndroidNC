@@ -5,19 +5,19 @@ public class Pet {
     private String name;
     private String loai;
     private int tuoi;
-    private String imageUrl;
+    private String gioiTinh;
     private String lichTiem;
     private String lichKiemTraSucKhoe;
 
     public Pet() {
     }
 
-    public Pet(String id, String name, String loai, int tuoi, String imageUrl, String lichTiem, String lichKiemTraSucKhoe) {
+    public Pet(String id, String name, String loai, int tuoi, String gioiTinh, String lichTiem, String lichKiemTraSucKhoe) {
         this.id = id;
         this.name = name;
         this.loai = loai;
         this.tuoi = tuoi;
-        this.imageUrl = imageUrl;
+        this.gioiTinh = gioiTinh;
         this.lichTiem = lichTiem;
         this.lichKiemTraSucKhoe = lichKiemTraSucKhoe;
     }
@@ -54,12 +54,12 @@ public class Pet {
         this.tuoi = tuoi;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getGioiTinh() {
+        return gioiTinh;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
     public String getLichTiem() {
@@ -85,7 +85,7 @@ public class Pet {
                 ", name='" + name + '\'' +
                 ", loai='" + loai + '\'' +
                 ", tuoi=" + tuoi +
-                ", imageUrl='" + imageUrl + '\'' +
+                ", gioiTinh='" + gioiTinh + '\'' +
                 ", lichTiem='" + lichTiem + '\'' +
                 ", lichKiemTraSucKhoe='" + lichKiemTraSucKhoe + '\'' +
                 '}';
