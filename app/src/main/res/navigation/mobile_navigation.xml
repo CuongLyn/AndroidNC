@@ -15,16 +15,34 @@
         android:id="@+id/nav_add_pet"
         android:name="com.example.mypets.ui.pet.AddPetFragment"
         android:label="Add Pet"
-        tools:layout="@layout/fragment_add_pet" />
+        tools:layout="@layout/fragment_add_pet"
+
+        />
+
     <fragment
         android:id="@+id/nav_my_pet"
         android:name="com.example.mypets.ui.pet.MyPetFragment"
         android:label="My Pet"
-        tools:layout="@layout/fragment_my_pet" />
+        tools:layout="@layout/fragment_my_pet">
 
+        <action
+            android:id="@+id/action_myPet_to_petInfo"
+            app:destination="@id/petInforFragment" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/petInforFragment"
+        android:name="com.example.mypets.ui.pet.PetInforFragment"
+        android:label="Thông tin thú cưng">
+        <action
+            android:id="@+id/action_petInforFragment_to_vaccinationListFragment"
+            app:destination="@id/vaccinationListFragment"/>
+    </fragment>
 
-
+    <fragment
+        android:id="@+id/vaccinationListFragment"
+        android:name="com.example.mypets.ui.Vaccin.VaccinationListFragment"
+        android:label="Lịch tiêm phòng"/>
 
 
 </navigation>

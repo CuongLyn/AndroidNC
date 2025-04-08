@@ -3,7 +3,10 @@ package com.example.mypets.ui.pet;
 import android.app.AlertDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,29 +44,25 @@ public class MyPetFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_my_pet, container, false);
 
+        // Khởi tạo RecyclerView
         recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         petList = new ArrayList<>();
         petAdapter = new PetAdapter(getContext(), petList);
-
         recyclerView.setAdapter(petAdapter);
 
-        // Firebase setup
+        // Thiết lập Firebase
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("pets"); // Tham chiếu tới node pets trong Firebase Realtime Database
+        myRef = database.getReference("pets");
 
-        // Đọc dữ liệu từ Firebase
+        // Load dữ liệu từ Firebase
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 petList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Pet pet = snapshot.getValue(Pet.class);
@@ -73,16 +72,27 @@ public class MyPetFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Xử lý lỗi nếu có
-                Log.w("MyPetFragment", "Failed to read value.", error.toException());
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("MyPetFragment", "Load data failed: ", error.toException());
             }
         });
 
-        petAdapter.setOnItemClickListener(pet -> showEditDialog(pet));
+        // Xử lý click vào ITEM để xem thông tin
+        petAdapter.setOnItemClickListener(pet -> {
+            // Tạo Bundle chứa dữ liệu pet
+            Bundle args = new Bundle();
+            args.putSerializable("pet", pet);
 
+            // Điều hướng bằng NavController
+            NavController navController = Navigation.findNavController(requireView());
+            navController.navigate(
+                    R.id.action_myPet_to_petInfo,
+                    args
+            );
+        });
 
-
+        // Xử lý click vào NÚT EDIT để chỉnh sửa
+        petAdapter.setOnEditClickListener(this::showEditDialog);
 
         return rootView;
     }

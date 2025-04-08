@@ -1,6 +1,8 @@
 package com.example.mypets.data.model;
 
-public class Pet {
+import java.io.Serializable;
+
+public class Pet implements Serializable {
     private String id;
     private String name;
     private String loai;

@@ -34,6 +34,8 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         return new PetViewHolder(view);
     }
 
+
+
     @Override
     public void onBindViewHolder(PetViewHolder holder, int position) {
         Pet pet = petList.get(position);
@@ -53,11 +55,16 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         });
 
         holder.itemView.findViewById(R.id.editIcon).setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onItemClick(pet);
+            if (editClickListener != null) {
+                editClickListener.onEditClick(pet);
             }
         });
 
+        holder.itemView.setOnClickListener(v -> {
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(pet);
+            }
+        });
 
     }
 
@@ -68,7 +75,6 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
 
     public class PetViewHolder extends RecyclerView.ViewHolder {
         TextView name, loai;
-
 
         public PetViewHolder(View itemView) {
             super(itemView);
@@ -98,10 +104,19 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         void onItemClick(Pet pet);
     }
 
-    private OnItemClickListener listener;
+    public interface OnEditClickListener {
+        void onEditClick(Pet pet);
+    }
+
+    private OnItemClickListener itemClickListener;
+    private OnEditClickListener editClickListener;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
+        this.itemClickListener = listener;
+    }
+
+    public void setOnEditClickListener(OnEditClickListener listener) {
+        this.editClickListener = listener;
     }
 
 

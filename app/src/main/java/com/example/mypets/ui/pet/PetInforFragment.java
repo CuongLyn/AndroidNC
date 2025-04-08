@@ -3,64 +3,68 @@ package com.example.mypets.ui.pet;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.mypets.R;
+import com.example.mypets.data.model.Pet;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PetInforFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PetInforFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public PetInforFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PetInforFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PetInforFragment newInstance(String param1, String param2) {
-        PetInforFragment fragment = new PetInforFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private Pet currentPet;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_pet_infor, container, false);
+
+        // Nhận dữ liệu pet
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            currentPet = (Pet) getArguments().getSerializable("pet");
         }
-    }
+        // Xử lý nút Tiêm phòng
+        Button btnVaccination = view.findViewById(R.id.btn_tiemphong);
+        btnVaccination.setOnClickListener(v -> {
+            if (currentPet != null) {
+                Bundle args = new Bundle();
+                args.putString("petId", currentPet.getId()); // Truyền petId
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pet_infor, container, false);
+                // Điều hướng bằng Navigation Component
+                NavController navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_petInforFragment_to_vaccinationListFragment, args);
+            }
+        });
+
+
+
+        // Ánh xạ view
+        TextView tvTen = view.findViewById(R.id.tvTen);
+        TextView tvLoai = view.findViewById(R.id.tvLoai);
+        TextView tvTuoi = view.findViewById(R.id.tvTuoi);
+        TextView tvGioiTinh = view.findViewById(R.id.tvGioiTinh);
+        ImageView img1 = view.findViewById(R.id.img1);
+        ImageView img2 = view.findViewById(R.id.img2);
+        ImageView img3 = view.findViewById(R.id.img3);
+
+        // Hiển thị thông tin
+        if (currentPet != null) {
+            tvTen.setText(currentPet.getName());
+            tvLoai.setText(currentPet.getLoai());
+            tvTuoi.setText(String.valueOf(currentPet.getTuoi()));
+            tvGioiTinh.setText(currentPet.getGioiTinh());
+            img1.setImageResource(R.drawable.meo);
+            img2.setImageResource(R.drawable.meo);
+            img3.setImageResource(R.drawable.meo);
+
+
+        }
+
+        return view;
     }
 }
