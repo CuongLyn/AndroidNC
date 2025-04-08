@@ -2,18 +2,16 @@ package com.example.mypets.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mypets.R;
-import com.example.mypets.data.model.Pet;
+import com.example.mypets.data.model.Pet.Pet;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,8 +32,6 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         return new PetViewHolder(view);
     }
 
-
-
     @Override
     public void onBindViewHolder(PetViewHolder holder, int position) {
         Pet pet = petList.get(position);
@@ -54,18 +50,19 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
                     .show();
         });
 
+        // Xử lý khi nhấn nút sửa
         holder.itemView.findViewById(R.id.editIcon).setOnClickListener(v -> {
             if (editClickListener != null) {
                 editClickListener.onEditClick(pet);
             }
         });
 
+        // Xử lý khi click vào item
         holder.itemView.setOnClickListener(v -> {
             if (itemClickListener != null) {
                 itemClickListener.onItemClick(pet);
             }
         });
-
     }
 
     @Override
@@ -83,7 +80,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         }
     }
 
-    //delete
+    // Delete Pet
     private void deletePetFromFirebase(String petId, int position) {
         DatabaseReference petRef = FirebaseDatabase.getInstance()
                 .getReference("pets")
@@ -99,7 +96,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         });
     }
 
-    //interface
+    // Interfaces
     public interface OnItemClickListener {
         void onItemClick(Pet pet);
     }
@@ -118,8 +115,4 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
     public void setOnEditClickListener(OnEditClickListener listener) {
         this.editClickListener = listener;
     }
-
-
-
 }
-

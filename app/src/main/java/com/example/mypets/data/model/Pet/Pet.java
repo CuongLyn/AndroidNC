@@ -1,4 +1,4 @@
-package com.example.mypets.data.model;
+package com.example.mypets.data.model.Pet;
 
 import java.io.Serializable;
 
@@ -10,8 +10,20 @@ public class Pet implements Serializable {
     private String gioiTinh;
     private String lichTiem;
     private String lichKiemTraSucKhoe;
+    private GioAn gioAn;
 
     public Pet() {
+    }
+
+    public Pet(String id, String name, String loai, int tuoi, String gioiTinh, String lichTiem, String lichKiemTraSucKhoe, GioAn gioAn) {
+        this.id = id;
+        this.name = name;
+        this.loai = loai;
+        this.tuoi = tuoi;
+        this.gioiTinh = gioiTinh;
+        this.lichTiem = lichTiem;
+        this.lichKiemTraSucKhoe = lichKiemTraSucKhoe;
+        this.gioAn = gioAn;
     }
 
     public Pet(String id, String name, String loai, int tuoi, String gioiTinh, String lichTiem, String lichKiemTraSucKhoe) {
@@ -80,6 +92,15 @@ public class Pet implements Serializable {
         this.lichKiemTraSucKhoe = lichKiemTraSucKhoe;
     }
 
+    public GioAn getGioAn() {
+        return gioAn;
+    }
+
+    public void setGioAn(GioAn gioAn) {
+        this.gioAn = gioAn;
+    }
+
+
     @Override
     public String toString() {
         return "Pet{" +
@@ -90,6 +111,10 @@ public class Pet implements Serializable {
                 ", gioiTinh='" + gioiTinh + '\'' +
                 ", lichTiem='" + lichTiem + '\'' +
                 ", lichKiemTraSucKhoe='" + lichKiemTraSucKhoe + '\'' +
+                ", gioAn=" + (gioAn != null ?
+                "[sáng=" + gioAn.getSang() +
+                        ", trưa=" + gioAn.getTrua() +
+                        ", tối=" + gioAn.getToi() + "]" : "null") +
                 '}';
     }
 }

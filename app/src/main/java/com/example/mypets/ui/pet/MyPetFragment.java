@@ -2,14 +2,6 @@ package com.example.mypets.ui.pet;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +11,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mypets.R;
 import com.example.mypets.adapter.PetAdapter;
-import com.example.mypets.data.model.Pet;
+import com.example.mypets.data.model.Pet.Pet;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class MyPetFragment extends Fragment {
     private FirebaseDatabase database;
@@ -47,7 +44,6 @@ public class MyPetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_my_pet, container, false);
 
-        // Khởi tạo RecyclerView
         recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -55,7 +51,6 @@ public class MyPetFragment extends Fragment {
         petAdapter = new PetAdapter(getContext(), petList);
         recyclerView.setAdapter(petAdapter);
 
-        // Thiết lập Firebase
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("pets");
 
@@ -66,7 +61,10 @@ public class MyPetFragment extends Fragment {
                 petList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Pet pet = snapshot.getValue(Pet.class);
-                    petList.add(pet);
+                    if (pet != null) {
+                        pet.setId(snapshot.getKey());
+                        petList.add(pet);
+                    }
                 }
                 petAdapter.notifyDataSetChanged();
             }
@@ -77,34 +75,34 @@ public class MyPetFragment extends Fragment {
             }
         });
 
-        // Xử lý click vào ITEM để xem thông tin
+        // Xử lý khi click vào item để xem chi tiết
         petAdapter.setOnItemClickListener(pet -> {
-            // Tạo Bundle chứa dữ liệu pet
-            Bundle args = new Bundle();
-            args.putSerializable("pet", pet);
+            Bundle bundle = new Bundle();
+            bundle.putString("id", pet.getId());
+            bundle.putString("name", pet.getName());
+            bundle.putString("loai", pet.getLoai());
+            bundle.putInt("tuoi", pet.getTuoi());
+            bundle.putString("gioiTinh", pet.getGioiTinh());
+            bundle.putString("lichTiem", pet.getLichTiem());
+            bundle.putString("lichKiemTra", pet.getLichKiemTraSucKhoe());
 
-            // Điều hướng bằng NavController
-            NavController navController = Navigation.findNavController(requireView());
-            navController.navigate(
-                    R.id.action_myPet_to_petInfo,
-                    args
-            );
+            NavHostFragment.findNavController(MyPetFragment.this)
+                    .navigate(R.id.action_myPet_to_petInfo, bundle);
         });
 
-        // Xử lý click vào NÚT EDIT để chỉnh sửa
+        // Xử lý khi click vào nút sửa
         petAdapter.setOnEditClickListener(this::showEditDialog);
 
         return rootView;
     }
+
     private void showEditDialog(Pet pet) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Chỉnh sửa thú cưng");
 
-        // Inflate layout dialog
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_edit_pet, null);
         builder.setView(view);
 
-        // Ánh xạ view
         EditText nameEditText = view.findViewById(R.id.editTextName);
         EditText loaiEditText = view.findViewById(R.id.editTextLoai);
         EditText tuoiEditText = view.findViewById(R.id.editTextTuoi);
@@ -112,14 +110,12 @@ public class MyPetFragment extends Fragment {
         EditText lichKiemTraEditText = view.findViewById(R.id.editTextLichKiemTra);
         RadioGroup gioiTinhRadioGroup = view.findViewById(R.id.radioGroupGioiTinh);
 
-        // Set dữ liệu cũ vào EditText
         nameEditText.setText(pet.getName());
         loaiEditText.setText(pet.getLoai());
         tuoiEditText.setText(String.valueOf(pet.getTuoi()));
         lichTiemEditText.setText(pet.getLichTiem());
         lichKiemTraEditText.setText(pet.getLichKiemTraSucKhoe());
 
-        // Chọn đúng giới tính
         for (int i = 0; i < gioiTinhRadioGroup.getChildCount(); i++) {
             RadioButton rb = (RadioButton) gioiTinhRadioGroup.getChildAt(i);
             if (rb.getText().toString().equals(pet.getGioiTinh())) {
@@ -129,7 +125,6 @@ public class MyPetFragment extends Fragment {
         }
 
         builder.setPositiveButton("Cập nhật", (dialog, which) -> {
-            // Lấy dữ liệu mới
             String name = nameEditText.getText().toString().trim();
             String loai = loaiEditText.getText().toString().trim();
             String tuoiStr = tuoiEditText.getText().toString().trim();
@@ -148,18 +143,15 @@ public class MyPetFragment extends Fragment {
             RadioButton selectedGenderButton = view.findViewById(selectedGenderId);
             String gioiTinh = selectedGenderButton.getText().toString();
 
-            // Cập nhật Firebase
             DatabaseReference petRef = FirebaseDatabase.getInstance().getReference("pets").child(pet.getId());
             petRef.setValue(new Pet(pet.getId(), name, loai, tuoi, gioiTinh, lichTiem, lichKiemTra))
-                    .addOnSuccessListener(unused -> {
-                        Toast.makeText(getContext(), "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
-                    })
-                    .addOnFailureListener(e -> Toast.makeText(getContext(), "Lỗi khi cập nhật", Toast.LENGTH_SHORT).show());
+                    .addOnSuccessListener(unused ->
+                            Toast.makeText(getContext(), "Cập nhật thành công!", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e ->
+                            Toast.makeText(getContext(), "Lỗi khi cập nhật", Toast.LENGTH_SHORT).show());
         });
 
         builder.setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss());
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        builder.create().show();
     }
 }
