@@ -127,7 +127,7 @@
         android:id="@+id/btn_dexuat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Đề xuất dinh dưỡng /  hoạt động" />
+        android:text="Theo dõi sức khỏe" />
 
     <Button
         android:id="@+id/btn_tiemphong"
