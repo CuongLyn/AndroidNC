@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,15 +15,20 @@
         android:name="com.example.mypets.ui.pet.AddPetFragment"
         android:label="Add Pet"
         tools:layout="@layout/fragment_add_pet" />
+
     <fragment
         android:id="@+id/nav_my_pet"
         android:name="com.example.mypets.ui.pet.MyPetFragment"
         android:label="My Pet"
-        tools:layout="@layout/fragment_my_pet" />
+        tools:layout="@layout/fragment_my_pet">
+        <action
+            android:id="@+id/action_nav_mypet_to_petInforFragment"
+            app:destination="@id/petInforFragment" />
+    </fragment>
 
-
-
-
-
-
+    <fragment
+        android:id="@+id/petInforFragment"
+        android:name="com.example.mypets.ui.pet.PetInforFragment"
+        android:label="Pet Information"
+        tools:layout="@layout/fragment_pet_infor" />
 </navigation>

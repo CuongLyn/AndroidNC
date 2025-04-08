@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.mypets.R;
-import com.example.mypets.data.model.Pet;
+import com.example.mypets.data.model.Pet.Pet;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

@@ -2,18 +2,16 @@ package com.example.mypets.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mypets.R;
-import com.example.mypets.data.model.Pet;
+import com.example.mypets.data.model.Pet.Pet;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -51,12 +49,20 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
                     .setNegativeButton("Hủy", null)
                     .show();
         });
-
+        //Xu ly nut Edit
         holder.itemView.findViewById(R.id.editIcon).setOnClickListener(v -> {
+            if (editListener != null) {
+                editListener.onEditClick(pet);
+            }
+        });
+
+        //Xu ly khi click vao item
+        holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onItemClick(pet);
             }
         });
+
 
 
     }
@@ -98,7 +104,17 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         void onItemClick(Pet pet);
     }
 
+    public interface OnEditClickListener {
+        void onEditClick(Pet pet);
+    }
+
     private OnItemClickListener listener;
+
+    private OnEditClickListener editListener;
+
+    public void setOnEditClickListener(OnEditClickListener listener) {
+        this.editListener = listener;
+    }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;

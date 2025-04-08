@@ -1,9 +1,12 @@
 package com.example.mypets.ui.pet;
 
 import android.app.AlertDialog;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +21,7 @@ import android.widget.Toast;
 
 import com.example.mypets.R;
 import com.example.mypets.adapter.PetAdapter;
-import com.example.mypets.data.model.Pet;
+import com.example.mypets.data.model.Pet.Pet;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +38,8 @@ public class MyPetFragment extends Fragment {
     private RecyclerView recyclerView;
     private PetAdapter petAdapter;
     private List<Pet> petList;
+
+
 
     public MyPetFragment() {
         // Required empty public constructor
@@ -68,6 +73,7 @@ public class MyPetFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Pet pet = snapshot.getValue(Pet.class);
                     petList.add(pet);
+                    pet.setId(snapshot.getKey());
                 }
                 petAdapter.notifyDataSetChanged();
             }
@@ -79,7 +85,24 @@ public class MyPetFragment extends Fragment {
             }
         });
 
-        petAdapter.setOnItemClickListener(pet -> showEditDialog(pet));
+        petAdapter.setOnEditClickListener(pet -> showEditDialog(pet));
+
+        petAdapter.setOnItemClickListener(pet -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("id", pet.getId());
+            bundle.putString("name", pet.getName());
+            bundle.putString("loai", pet.getLoai());
+            bundle.putInt("tuoi", pet.getTuoi());
+            bundle.putString("gioiTinh", pet.getGioiTinh());
+            bundle.putString("lichTiem", pet.getLichTiem());
+            bundle.putString("lichKiemTra", pet.getLichKiemTraSucKhoe());
+
+            NavHostFragment.findNavController(MyPetFragment.this)
+                    .navigate(R.id.action_nav_mypet_to_petInforFragment, bundle);
+        });
+
+
+
 
 
 
@@ -152,4 +175,8 @@ public class MyPetFragment extends Fragment {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    //Cam bien
+
+
 }
