@@ -110,20 +110,21 @@ public class MainActivity extends AppCompatActivity {
 
             if (event.sensor.getType() == Sensor.TYPE_AMBIENT_TEMPERATURE) {
                 if (value > MAX_TEMP) {
-                    showNotification("Nhiệt độ cao: " + value + "°C. Thú cưng có thể bị sốc nhiệt.");
+                    showNotification("Nhiệt độ cao: " + value + "°C. Thú cưng có thể bị sốc nhiệt.", Sensor.TYPE_AMBIENT_TEMPERATURE);
                 } else if (value < MIN_TEMP) {
-                    showNotification("Nhiệt độ thấp: " + value + "°C. Thú cưng có thể bị cảm lạnh.");
+                    showNotification("Nhiệt độ thấp: " + value + "°C. Thú cưng có thể bị cảm lạnh.", Sensor.TYPE_AMBIENT_TEMPERATURE);
                 }
             }
 
             if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
                 if (value > MAX_HUMIDITY) {
-                    showNotification("Độ ẩm cao: " + value + "%. Môi trường dễ sinh nấm mốc.");
+                    showNotification("Độ ẩm cao: " + value + "%. Môi trường dễ sinh nấm mốc.", Sensor.TYPE_RELATIVE_HUMIDITY);
                 } else if (value < MIN_HUMIDITY) {
-                    showNotification("Độ ẩm thấp: " + value + "%. Da thú cưng có thể bị khô.");
+                    showNotification("Độ ẩm thấp: " + value + "%. Da thú cưng có thể bị khô.", Sensor.TYPE_RELATIVE_HUMIDITY);
                 }
             }
         }
+
 
 
         @Override
@@ -132,11 +133,10 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void showNotification(String message) {
+    private void showNotification(String message, int sensorType) {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         String channelId = "pet_alert_channel";
 
-        // Tạo channel nếu cần
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     channelId,
@@ -146,8 +146,16 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
 
+        int iconRes = R.drawable.ic_vaccine; // mặc định
+
+        if (sensorType == Sensor.TYPE_AMBIENT_TEMPERATURE) {
+            iconRes = R.drawable.ic_temp;
+        } else if (sensorType == Sensor.TYPE_RELATIVE_HUMIDITY) {
+            iconRes = R.drawable.ic_humi;
+        }
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
-                .setSmallIcon(R.drawable.ic_vaccine) // icon tùy chỉnh của bạn
+                .setSmallIcon(iconRes)
                 .setContentTitle("Cảnh báo môi trường")
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -155,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
         notificationManager.notify(new Random().nextInt(), builder.build());
     }
+
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

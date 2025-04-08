@@ -41,6 +41,19 @@ public class PetInforFragment extends Fragment {
             }
         });
 
+        // Xử lý nút Theo dõi sức khỏe
+        Button btnHealthRecord = view.findViewById(R.id.btn_dexuat);
+        btnHealthRecord.setOnClickListener(v -> {
+            if (currentPet != null) {
+                Bundle args = new Bundle();
+                args.putString("petId", currentPet.getId()); // Truyền petId
+
+                // Điều hướng đến PetHealthFragment
+                NavController navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_petInforFragment_to_petHealthFragment, args);
+            }
+        });
+
 
 
         // Ánh xạ view

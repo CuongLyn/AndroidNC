@@ -51,6 +51,8 @@ dependencies {
 
     implementation(libs.androidx.work.runtime)
     implementation(libs.firebase.messaging)
+    implementation(libs.mpandroidchart)
+
 
 
     implementation(platform("com.google.firebase:firebase-bom:33.12.0"))

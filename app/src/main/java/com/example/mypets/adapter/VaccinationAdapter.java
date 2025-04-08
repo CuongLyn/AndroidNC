@@ -4,7 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,10 +25,20 @@ public class VaccinationAdapter extends RecyclerView.Adapter<VaccinationAdapter.
     private Context context;
     private final SimpleDateFormat dbDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     private final SimpleDateFormat displayDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+    private OnVaccinationActionListener actionListener;
+
+    public interface OnVaccinationActionListener {
+        void onEditClick(Vaccination vaccination, int position);
+        void onDeleteClick(Vaccination vaccination);
+    }
 
     public VaccinationAdapter(Context context, List<Vaccination> vaccinationList) {
         this.context = context;
         this.vaccinationList = vaccinationList;
+    }
+
+    public void setOnVaccinationActionListener(OnVaccinationActionListener listener) {
+        this.actionListener = listener;
     }
 
     @NonNull
@@ -41,36 +52,52 @@ public class VaccinationAdapter extends RecyclerView.Adapter<VaccinationAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Vaccination vaccination = vaccinationList.get(position);
 
+        // Set basic information
         holder.tvVaccineName.setText(vaccination.getVaccineName());
+        holder.tvDate.setText(formatDateLabel("Ngày tiêm: ", vaccination.getDate()));
 
-        // Xử lý định dạng ngày tháng
-        holder.tvDate.setText("Ngày tiêm: " + formatDateForDisplay(vaccination.getDate()));
-
-        // Xử lý ngày tiêm tiếp theo (có thể trống)
+        // Handle next date
         String nextDate = formatDateForDisplay(vaccination.getNextDate());
         if (nextDate.isEmpty()) {
             holder.tvNextDate.setVisibility(View.GONE);
         } else {
-            holder.tvNextDate.setText("Ngày tiêm tiếp theo: " + nextDate);
+            holder.tvNextDate.setText(formatDateLabel("Ngày tiếp theo: ", vaccination.getNextDate()));
             holder.tvNextDate.setVisibility(View.VISIBLE);
         }
 
-        holder.btnEdit.setOnClickListener(v -> {
-            if (actionListener != null) {
-                actionListener.onEditClick(vaccination, position);
-            }
-        });
 
-        holder.btnDelete.setOnClickListener(v -> {
-            if (actionListener != null) {
-                actionListener.onDeleteClick(vaccination);
-            }
-        });
+
+        // Setup menu click
+        holder.btnMenu.setOnClickListener(v -> showPopupMenu(v, vaccination, position));
     }
 
-    @Override
-    public int getItemCount() {
-        return vaccinationList.size();
+    private void showPopupMenu(View view, Vaccination vaccination, int position) {
+        PopupMenu popup = new PopupMenu(context, view);
+        popup.inflate(R.menu.vaccination_menu);
+
+        popup.setOnMenuItemClickListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.menu_edit) {
+                if (actionListener != null) {
+                    actionListener.onEditClick(vaccination, position);
+                }
+                return true;
+            }
+            else if (itemId == R.id.menu_delete) {
+                if (actionListener != null) {
+                    actionListener.onDeleteClick(vaccination);
+                }
+                return true;
+            }
+
+            return false;
+        });
+        popup.show();
+    }
+
+    private String formatDateLabel(String prefix, String date) {
+        return prefix + formatDateForDisplay(date);
     }
 
     private String formatDateForDisplay(String dbDate) {
@@ -81,38 +108,32 @@ public class VaccinationAdapter extends RecyclerView.Adapter<VaccinationAdapter.
             Date date = dbDateFormat.parse(dbDate);
             return displayDateFormat.format(date);
         } catch (ParseException e) {
-            return dbDate; // Trả về nguyên bản nếu có lỗi
+            return dbDate;
         }
+    }
+
+
+
+    @Override
+    public int getItemCount() {
+        return vaccinationList.size();
+    }
+
+    public void updateData(List<Vaccination> newList) {
+        vaccinationList = newList;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvVaccineName, tvDate, tvNextDate;
-        ImageButton btnEdit, btnDelete;
+        ImageView btnMenu;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvVaccineName = itemView.findViewById(R.id.tvVaccineName);
             tvDate = itemView.findViewById(R.id.tvDate);
             tvNextDate = itemView.findViewById(R.id.tvNextDate);
-            btnEdit = itemView.findViewById(R.id.btnEdit);
-            btnDelete = itemView.findViewById(R.id.btnDelete);
+            btnMenu = itemView.findViewById(R.id.btnMenu);
         }
-    }
-
-    public interface OnVaccinationActionListener {
-        void onEditClick(Vaccination vaccination, int position);
-        void onDeleteClick(Vaccination vaccination);
-    }
-
-    private OnVaccinationActionListener actionListener;
-
-    public void setOnVaccinationActionListener(OnVaccinationActionListener listener) {
-        this.actionListener = listener;
-    }
-
-    // Thêm phương thức cập nhật dữ liệu
-    public void updateData(List<Vaccination> newList) {
-        vaccinationList = newList;
-        notifyDataSetChanged();
     }
 }

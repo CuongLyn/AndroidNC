@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text Input Style -->
+    <style name="TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/primary_color</item>
+        <item name="hintTextColor">@color/primary_color</item>
+        <item name="android:textColorHint">@color/secondary_text</item>
+
+        <!-- Thêm các state quan trọng -->
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+
+    </style>
+
+    <!-- Icon Button Style -->
+    <style name="IconButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="iconTint">@color/primary_color</item>
+        <item name="iconSize">24dp</item>
+        <item name="iconPadding">0dp</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">@color/primary_light</item>
+    </style>
+</resources>

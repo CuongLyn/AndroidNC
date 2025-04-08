@@ -1,36 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="24dp">
 
-    <EditText
-        android:id="@+id/etVaccineName"
+    <!-- Tiêu đề -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tên vaccine"/>
+        android:text="Thêm vaccine mới"
+        android:textSize="20sp"
+        android:textColor="@color/primary_text"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/etDate"
+    <!-- Tên vaccine -->
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ngày tiêm (dd/MM/yyyy)"
-        android:layout_marginTop="8dp"/>
+        android:hint="Tên vaccine"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/primary_color"
+        android:layout_marginBottom="8dp">
 
-    <EditText
-        android:id="@+id/etNextDate"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etVaccineName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Ngày tiêm -->
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ngày tiêm tiếp theo (dd/MM/yyyy)"
-        android:layout_marginTop="8dp"/>
+        android:hint="Ngày tiêm"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/primary_color"
+        android:layout_marginBottom="8dp">
 
-    <Button
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDate"
+                android:hint="Ngày tiêm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="date"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDatePicker"
+                style="@style/IconButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_calendar"
+                app:iconSize="24dp"/>
+        </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Ngày tiêm tiếp theo -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ngày tiêm tiếp theo (tùy chọn)"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/primary_color"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNextDate"
+                android:hint="Ngày tiêm tiếp theo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="date"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnNextDatePicker"
+                style="@style/IconButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_calendar"
+                app:iconSize="24dp"/>
+        </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Nút Lưu -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lưu"
-        android:layout_marginTop="16dp"/>
+        android:text="Lưu thông tin"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_save"
+        app:iconTint="@color/white"
+        app:backgroundTint="@color/primary_color"
+        app:cornerRadius="8dp"
+        android:textSize="16sp"
+        android:paddingVertical="12dp"/>
 
 </LinearLayout>

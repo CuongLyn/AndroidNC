@@ -37,12 +37,20 @@
         <action
             android:id="@+id/action_petInforFragment_to_vaccinationListFragment"
             app:destination="@id/vaccinationListFragment"/>
+        <action
+            android:id="@+id/action_petInforFragment_to_petHealthFragment"
+            app:destination="@id/petHealthFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/vaccinationListFragment"
         android:name="com.example.mypets.ui.Vaccin.VaccinationListFragment"
         android:label="Lịch tiêm phòng"/>
+
+    <fragment
+        android:id="@+id/petHealthFragment"
+        android:name="com.example.mypets.ui.PetHealthRecord.PetHealthFragment"
+        android:label="Theo dõi sức khỏe thú cưng" />
 
 
 </navigation>
