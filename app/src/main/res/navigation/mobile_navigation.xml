@@ -22,13 +22,23 @@
         android:label="My Pet"
         tools:layout="@layout/fragment_my_pet">
         <action
-            android:id="@+id/action_nav_mypet_to_petInforFragment"
+            android:id="@+id/action_myPet_to_petInfo"
             app:destination="@id/petInforFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/petInforFragment"
         android:name="com.example.mypets.ui.pet.PetInforFragment"
-        android:label="Pet Information"
-        tools:layout="@layout/fragment_pet_infor" />
+        android:label="Thông tin thú cưng"
+        tools:layout="@layout/fragment_pet_infor">
+        <action
+            android:id="@+id/action_petInforFragment_to_vaccinationListFragment"
+            app:destination="@id/vaccinationListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/vaccinationListFragment"
+        android:name="com.example.mypets.ui.Vaccin.VaccinationListFragment"
+        android:label="Lịch tiêm phòng" />
+
 </navigation>

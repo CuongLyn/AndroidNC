@@ -8,150 +8,208 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/bg_soft_card"
-        android:padding="24dp"
-        android:layout_margin="16dp"
-        android:elevation="6dp">
+        android:orientation="vertical">
 
-        <!-- Pet Info Card -->
-        <TextView
-            android:id="@+id/tvName"
+        <!-- Card Thông Tin Thú Cưng -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tên: Mèo Mun"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:drawableLeft="@android:drawable/ic_menu_info_details"
-            android:drawablePadding="8dp"
-            android:padding="8dp"
-            android:textColor="#37474F" />
+            android:orientation="vertical"
+            android:background="@drawable/bg_soft_card"
+            android:padding="24dp"
+            android:layout_margin="16dp"
+            android:elevation="6dp">
 
-        <TextView
-            android:id="@+id/tvLoai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Loài: Mèo"
-            android:textSize="18sp"
-            android:drawableLeft="@android:drawable/ic_menu_gallery"
-            android:drawablePadding="8dp"
-            android:padding="8dp"
-            android:textColor="#455A64" />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên: Mèo Mun"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:drawableLeft="@android:drawable/ic_menu_info_details"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:textColor="#37474F" />
 
-        <TextView
-            android:id="@+id/tvTuoi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tuổi: 2"
-            android:textSize="18sp"
-            android:drawableLeft="@android:drawable/ic_menu_recent_history"
-            android:drawablePadding="8dp"
-            android:padding="8dp"
-            android:textColor="#455A64" />
+            <TextView
+                android:id="@+id/tvLoai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Loài: Mèo"
+                android:textSize="18sp"
+                android:drawableLeft="@android:drawable/ic_menu_gallery"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:textColor="#455A64" />
 
-        <TextView
-            android:id="@+id/tvGioiTinh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Giới tính: Đực"
-            android:textSize="18sp"
-            android:drawableLeft="@android:drawable/ic_menu_myplaces"
-            android:drawablePadding="8dp"
-            android:padding="8dp"
-            android:textColor="#455A64" />
+            <TextView
+                android:id="@+id/tvTuoi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tuổi: 2"
+                android:textSize="18sp"
+                android:drawableLeft="@android:drawable/ic_menu_recent_history"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:textColor="#455A64" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvLichTiemTitle"
-            android:text="Lịch tiêm chủng"
-            android:textSize="18sp"
-            android:drawableLeft="@android:drawable/ic_menu_agenda"
-            android:drawablePadding="8dp"
-            android:padding="8dp"
-            android:textColor="#455A64" />
+            <TextView
+                android:id="@+id/tvGioiTinh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giới tính: Đực"
+                android:textSize="18sp"
+                android:drawableLeft="@android:drawable/ic_menu_myplaces"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:textColor="#455A64" />
 
-        <TextView
-            android:id="@+id/tvLichTiem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lịch tiêm: 01/01/2025"
-            android:textSize="18sp"
-            android:drawablePadding="8dp"
-            android:padding="8dp"
-            android:layout_marginLeft="24dp"
-            android:textColor="#455A64" />
+            <TextView
+                android:id="@+id/tvLichTiemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lịch tiêm chủng"
+                android:textSize="18sp"
+                android:drawableLeft="@android:drawable/ic_menu_agenda"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:textColor="#455A64" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvLichKiemTraTitle"
-            android:text="Lịch kiểm tra sức khỏe"
-            android:textSize="18sp"
-            android:drawableLeft="@android:drawable/ic_menu_agenda"
-            android:drawablePadding="8dp"
-            android:padding="8dp"
-            android:textColor="#455A64" />
+            <TextView
+                android:id="@+id/tvLichTiem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lịch tiêm: 01/01/2025"
+                android:textSize="18sp"
+                android:layout_marginLeft="24dp"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:textColor="#455A64" />
 
-        <TextView
-            android:id="@+id/tvLichKiemTra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lịch kiểm tra sức khỏe: 01/06/2025"
-            android:textSize="18sp"
-            android:layout_marginLeft="24dp"
-            android:drawablePadding="8dp"
-            android:padding="8dp"
-            android:textColor="#455A64" />
+            <TextView
+                android:id="@+id/tvLichKiemTraTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lịch kiểm tra sức khỏe"
+                android:textSize="18sp"
+                android:drawableLeft="@android:drawable/ic_menu_agenda"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:textColor="#455A64" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Chọn giờ ăn theo buổi"
-            android:textSize="18sp"
-            android:drawableLeft="@android:drawable/ic_menu_recent_history"
-            android:drawablePadding="8dp"
-            android:padding="8dp"
-            android:textColor="#455A64" />
+            <TextView
+                android:id="@+id/tvLichKiemTra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lịch kiểm tra sức khỏe: 01/06/2025"
+                android:textSize="18sp"
+                android:layout_marginLeft="24dp"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:textColor="#455A64" />
 
-        <Spinner
-            android:id="@+id/spBuoiAn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@android:drawable/btn_dropdown" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chọn giờ ăn theo buổi"
+                android:textSize="18sp"
+                android:drawableLeft="@android:drawable/ic_menu_recent_history"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:textColor="#455A64" />
 
+            <Spinner
+                android:id="@+id/spBuoiAn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@android:drawable/btn_dropdown" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <EditText
+                    android:id="@+id/etGioAnTheoBuoi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Chọn giờ ăn"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:background="@android:drawable/edit_text"
+                    android:padding="12dp"
+                    android:textColor="#37474F"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Hình ảnh -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:layout_marginBottom="16dp">
 
-            <EditText
-                android:id="@+id/etGioAnTheoBuoi"
+            <ImageView
+                android:id="@+id/img1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_weight="1"
-                android:hint="Chọn giờ ăn"
-                android:focusable="false"
-                android:clickable="true"
-                android:background="@android:drawable/edit_text"
-                android:padding="12dp"
-                android:textColor="#37474F"
-                android:textSize="16sp" />
+                android:src="@drawable/ic_launcher_foreground"
+                android:scaleType="centerCrop" />
 
-<!--            <Switch-->
-<!--                android:id="@+id/switchOnOff"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="16dp"-->
-<!--                />-->
+            <ImageView
+                android:id="@+id/img2"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher_foreground"
+                android:scaleType="centerCrop" />
 
+            <ImageView
+                android:id="@+id/img3"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher_foreground"
+                android:scaleType="centerCrop" />
         </LinearLayout>
 
+        <!-- Các nút -->
+        <Button
+            android:id="@+id/btn_hoso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hồ sơ khám bệnh" />
 
+        <Button
+            android:id="@+id/btn_lichtrinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lịch trình thú cưng" />
 
+        <Button
+            android:id="@+id/btn_dexuat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Theo dõi sức khỏe" />
 
+        <Button
+            android:id="@+id/btn_tiemphong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiêm phòng" />
+
+        <Button
+            android:id="@+id/btn_lhbacsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lh.Bác sĩ/ Dịch vụ thú cưng" />
     </LinearLayout>
 </ScrollView>

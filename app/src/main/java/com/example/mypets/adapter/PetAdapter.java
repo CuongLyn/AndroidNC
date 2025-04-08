@@ -49,22 +49,20 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
                     .setNegativeButton("Hủy", null)
                     .show();
         });
-        //Xu ly nut Edit
+
+        // Xử lý khi nhấn nút sửa
         holder.itemView.findViewById(R.id.editIcon).setOnClickListener(v -> {
-            if (editListener != null) {
-                editListener.onEditClick(pet);
+            if (editClickListener != null) {
+                editClickListener.onEditClick(pet);
             }
         });
 
-        //Xu ly khi click vao item
+        // Xử lý khi click vào item
         holder.itemView.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onItemClick(pet);
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(pet);
             }
         });
-
-
-
     }
 
     @Override
@@ -75,7 +73,6 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
     public class PetViewHolder extends RecyclerView.ViewHolder {
         TextView name, loai;
 
-
         public PetViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.textViewName);
@@ -83,7 +80,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         }
     }
 
-    //delete
+    // Delete Pet
     private void deletePetFromFirebase(String petId, int position) {
         DatabaseReference petRef = FirebaseDatabase.getInstance()
                 .getReference("pets")
@@ -99,7 +96,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         });
     }
 
-    //interface
+    // Interfaces
     public interface OnItemClickListener {
         void onItemClick(Pet pet);
     }
@@ -108,19 +105,14 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         void onEditClick(Pet pet);
     }
 
-    private OnItemClickListener listener;
-
-    private OnEditClickListener editListener;
-
-    public void setOnEditClickListener(OnEditClickListener listener) {
-        this.editListener = listener;
-    }
+    private OnItemClickListener itemClickListener;
+    private OnEditClickListener editClickListener;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
+        this.itemClickListener = listener;
     }
 
-
-
+    public void setOnEditClickListener(OnEditClickListener listener) {
+        this.editClickListener = listener;
+    }
 }
-
