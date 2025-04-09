@@ -49,6 +49,11 @@
         android:id="@+id/petHealthFragment"
         android:name="com.example.mypets.ui.PetHealthRecord.PetHealthFragment"
         android:label="Theo dõi sức khỏe thú cưng" />
+    <fragment
+        android:id="@+id/nav_Cal_vaccine"
+        android:name="com.example.mypets.ui.Vaccin.VaccineCalendarFragment"
+        android:label="Lịch Tiêm Phòng"
+        tools:layout="@layout/fragment_vaccine_calendar" />
 
 
 </navigation>

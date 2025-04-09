@@ -52,6 +52,9 @@ dependencies {
     implementation(libs.androidx.work.runtime)
     implementation(libs.firebase.messaging)
     implementation(libs.mpandroidchart)
+    implementation(libs.material.calendarview)
+    implementation(libs.threetenabp)
+
 
 
 

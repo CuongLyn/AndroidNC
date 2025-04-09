@@ -13,7 +13,8 @@ navigationUi = "2.6.0"
 work = "2.8.1"
 firebase-messaging = "23.4.0"
 mpandroidchart = "3.1.0"
-
+materialCalendar = "2.0.0"
+threetenabp = "1.4.0"
 
 
 [libraries]
@@ -30,7 +31,8 @@ navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version
 androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "work" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging", version.ref = "firebase-messaging" }
 mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
-
+material-calendarview = { group = "com.github.prolificinteractive", name = "material-calendarview", version.ref = "materialCalendar" }
+threetenabp = { group = "com.jakewharton.threetenabp", name = "threetenabp", version.ref = "threetenabp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
