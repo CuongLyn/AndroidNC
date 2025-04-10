@@ -3,6 +3,8 @@ package com.example.mypets.ui.Schedule;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -264,9 +266,17 @@ public class DailyScheduleFragment extends Fragment implements ScheduleAdapter.O
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
+
+                    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(requireContext());
+                    int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
+                            new ComponentName(requireContext(), com.example.mypets.widget.ScheduleWidget.class)
+                    );
+                    appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.list_view);
                 })
                 .addOnFailureListener(e ->
                         Toast.makeText(getContext(), "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+
+
     }
 
     @Override
@@ -294,8 +304,15 @@ public class DailyScheduleFragment extends Fragment implements ScheduleAdapter.O
         databaseRef.child(schedule.getScheduleId()).removeValue()
                 .addOnSuccessListener(aVoid ->
                         Toast.makeText(getContext(), "Đã xóa", Toast.LENGTH_SHORT).show())
+
                 .addOnFailureListener(e ->
                         Toast.makeText(getContext(), "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(requireContext());
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
+                new ComponentName(requireContext(), com.example.mypets.widget.ScheduleWidget.class)
+        );
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.list_view);
     }
 
     private void showEditDialog(Schedule schedule) {
@@ -387,6 +404,14 @@ public class DailyScheduleFragment extends Fragment implements ScheduleAdapter.O
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(getContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
+
+                        // Cập nhật widget
+                        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(requireContext());
+                        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
+                                new ComponentName(requireContext(), com.example.mypets.widget.ScheduleWidget.class)
+                        );
+                        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.list_view);
+
                     })
                     .addOnFailureListener(e ->
                             Toast.makeText(getContext(), "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
