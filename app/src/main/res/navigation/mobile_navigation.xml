@@ -38,7 +38,16 @@
         <action
             android:id="@+id/action_petInforFragment_to_petHealthFragment"
             app:destination="@id/petHealthFragment" />
+        <action
+            android:id="@+id/action_petInforFragment_to_medicalRecordFragment"
+            app:destination="@id/medicalRecordFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/medicalRecordFragment"
+        android:name="com.example.mypets.ui.MedicalRecord.MedicalRecordFragment"
+        android:label="Medical Record"
+        />
 
     <fragment
         android:id="@+id/vaccinationListFragment"

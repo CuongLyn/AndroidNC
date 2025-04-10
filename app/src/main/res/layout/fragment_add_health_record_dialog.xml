@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Ngày -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp" />
 
+    <!-- Cân nặng -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,6 +31,51 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal" />
 
+    <!-- Chiều cao -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chiều cao (cm)"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/etHeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number" />
+
+    <!-- Chẩn đoán -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chẩn đoán"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/etDiagnosis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" />
+
+    <!-- Triệu chứng -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Triệu chứng"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/etSymptoms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:gravity="top" />
+
+    <!-- Nút lưu -->
     <Button
         android:id="@+id/btnSave"
         android:layout_width="match_parent"

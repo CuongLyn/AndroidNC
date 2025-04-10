@@ -43,6 +43,7 @@ public class PetInforFragment extends Fragment {
     private EditText etGioAnTheoBuoi;
     private Spinner spBuoiAn;
     private Button btnVaccination;
+    private Button btnHoSoKhamBenh;
     private FirebaseDatabase database;
     private DatabaseReference petRef;
     private String gioSang = "", gioTrua = "", gioToi = "";
@@ -62,11 +63,22 @@ public class PetInforFragment extends Fragment {
         etGioAnTheoBuoi = rootView.findViewById(R.id.etGioAnTheoBuoi);
         spBuoiAn = rootView.findViewById(R.id.spBuoiAn);
         btnVaccination = rootView.findViewById(R.id.btn_tiemphong);
+        btnHoSoKhamBenh = rootView.findViewById(R.id.btn_hoso);
 
         // Nhận dữ liệu pet
         if (getArguments() != null) {
             currentPet = (Pet) getArguments().getSerializable("pet");
         }
+
+        //Xu ly nut ho so kham benh
+        btnHoSoKhamBenh.setOnClickListener(v -> {
+            if (currentPet != null) {
+                Bundle args = new Bundle();
+                args.putString("petId", currentPet.getId());
+                NavController navController = Navigation.findNavController(rootView);
+                navController.navigate(R.id.action_petInforFragment_to_medicalRecordFragment, args);
+            }
+        });
 
         // Xử lý nút Tiêm phòng
         btnVaccination.setOnClickListener(v -> {
@@ -88,6 +100,8 @@ public class PetInforFragment extends Fragment {
                 navController.navigate(R.id.action_petInforFragment_to_petHealthFragment, args);
             }
         });
+
+
 
         // Spinner bữa ăn
         String[] buoiAn = {"Sáng", "Trưa", "Tối"};

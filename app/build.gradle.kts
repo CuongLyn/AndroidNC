@@ -62,5 +62,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-database")
     implementation ("androidx.work:work-runtime:2.9.0")
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 
 }

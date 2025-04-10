@@ -11,26 +11,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.mypets.R;
 import com.example.mypets.data.model.HealthRecord;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class AddHealthRecordDialogFragment extends DialogFragment {
-    private EditText etWeight, etNotes;
+    private EditText etWeight, etHeight, etDiagnosis, etSymptoms;
     private TextView tvDate;
     private Button btnSave;
     private OnHealthRecordSavedListener listener;
-    private String petId; // Thêm trường petId
+    private String petId;
 
     public interface OnHealthRecordSavedListener {
         void onHealthRecordSaved();
     }
 
-    // Phương thức khởi tạo với petId
     public static AddHealthRecordDialogFragment newInstance(String petId) {
         AddHealthRecordDialogFragment fragment = new AddHealthRecordDialogFragment();
         Bundle args = new Bundle();
@@ -46,7 +47,6 @@ public class AddHealthRecordDialogFragment extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Lấy petId từ arguments
         if (getArguments() != null) {
             petId = getArguments().getString("petId");
         }
@@ -58,40 +58,49 @@ public class AddHealthRecordDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_add_health_record_dialog, container, false);
 
         etWeight = view.findViewById(R.id.etWeight);
+        etHeight = view.findViewById(R.id.etHeight);
+        etDiagnosis = view.findViewById(R.id.etDiagnosis);
+        etSymptoms = view.findViewById(R.id.etSymptoms);
         tvDate = view.findViewById(R.id.tvDate);
         btnSave = view.findViewById(R.id.btnSave);
 
-        // Set ngày hiện tại
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String currentDate = sdf.format(new Date());
         tvDate.setText(currentDate);
 
         btnSave.setOnClickListener(v -> saveHealthRecord());
+
         return view;
     }
 
     private void saveHealthRecord() {
-        String weightStr = etWeight.getText().toString();
         String date = tvDate.getText().toString();
+        String weightStr = etWeight.getText().toString();
+        String heightStr = etHeight.getText().toString();
+        String diagnosis = etDiagnosis.getText().toString();
+        String symptoms = etSymptoms.getText().toString();
 
+        // Validate
         if (weightStr.isEmpty()) {
             etWeight.setError("Vui lòng nhập cân nặng");
             return;
         }
+        if (heightStr.isEmpty()) {
+            etHeight.setError("Vui lòng nhập chiều cao");
+            return;
+        }
 
-        // Tạo đối tượng HealthRecord
-        HealthRecord record = new HealthRecord();
-        record.setDate(date);
-        record.setWeight(Float.parseFloat(weightStr));
+        float weight = Float.parseFloat(weightStr);
+        int height = Integer.parseInt(heightStr);
 
-        // Kiểm tra petId
+        HealthRecord record = new HealthRecord(date, diagnosis, symptoms, weight, height);
+
         if (petId == null) {
             Toast.makeText(getContext(), "Lỗi: Không tìm thấy thú cưng", Toast.LENGTH_SHORT).show();
             dismiss();
             return;
         }
 
-        // Lưu vào Firebase
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         DatabaseReference healthRef = database.child("pets").child(petId).child("health_records");
         String recordId = healthRef.push().getKey();
@@ -106,7 +115,7 @@ public class AddHealthRecordDialogFragment extends DialogFragment {
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(getContext(), "Lưu thành công", Toast.LENGTH_SHORT).show();
                     if (listener != null) {
-                        listener.onHealthRecordSaved(); // Gọi callback để cập nhật UI
+                        listener.onHealthRecordSaved();
                     }
                     dismiss();
                 })
@@ -115,4 +124,14 @@ public class AddHealthRecordDialogFragment extends DialogFragment {
                     dismiss();
                 });
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getDialog() != null && getDialog().getWindow() != null) {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            getDialog().getWindow().setLayout(width, height);
+        }
+    }
+
 }

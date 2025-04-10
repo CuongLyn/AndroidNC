@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ngày khám: 01/01/2024"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/btnMenu"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_more_vert"
+                app:tint="@color/secondary_text"
+                android:contentDescription="Menu" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvVetName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bác sĩ: Dr. John Doe"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvClinicName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phòng khám: PetCare Clinic"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvReason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lý do: Kiểm tra sức khỏe định kỳ"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvDiagnosis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chẩn đoán: Khỏe mạnh"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvSymptoms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Triệu chứng: Không có"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvTreatment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Điều trị: Không cần"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvPrescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đơn thuốc: Không"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ghi chú: Bé rất khỏe"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
