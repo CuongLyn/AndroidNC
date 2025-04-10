@@ -12,6 +12,8 @@ public class Pet implements Serializable {
     private String lichKiemTraSucKhoe;
     private GioAn gioAn;
 
+    private String ownerId;
+
     public Pet() {
     }
 
@@ -35,6 +37,14 @@ public class Pet implements Serializable {
         this.lichTiem = lichTiem;
         this.lichKiemTraSucKhoe = lichKiemTraSucKhoe;
     }
+
+    public Pet(String name, String ownerId) {
+        this.name = name;
+        this.ownerId = ownerId;
+    }
+
+    public String getOwnerId() { return ownerId; }
+    public void setOwnerId(String ownerId) { this.ownerId = ownerId; }
 
     public String getId() {
         return id;

@@ -54,6 +54,10 @@
         android:name="com.example.mypets.ui.Vaccin.VaccineCalendarFragment"
         android:label="Lịch Tiêm Phòng"
         tools:layout="@layout/fragment_vaccine_calendar" />
+    <fragment
+        android:id="@+id/nav_schedule"
+        android:name="com.example.mypets.ui.Schedule.ScheduleFragment"
+        android:label="ScheduleFragment" />
 
 
 </navigation>

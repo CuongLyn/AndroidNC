@@ -20,6 +20,9 @@
             android:id="@+id/nav_Cal_vaccine"
             android:title="Lịch Tiêm Phòng" />
 
+        <item
+            android:id="@+id/nav_schedule"
+            android:title="Lịch Trình Thú Cưng" />
 
 
 
