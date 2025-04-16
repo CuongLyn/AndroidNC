@@ -9,6 +9,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 
 import com.example.mypets.databinding.ActivityMainBinding;
@@ -43,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
     private Sensor tempSensor;
     private Sensor humiditySensor;
 
-    private static final float MIN_TEMP = 18.0f;
-    private static final float MAX_TEMP = 30.0f;
-    private static final float MIN_HUMIDITY = 40.0f;
-    private static final float MAX_HUMIDITY = 65.0f;
+    private static final float MIN_TEMP = 18;
+    private static final float MAX_TEMP = 30;
+    private static final float MIN_HUMIDITY = 40;
+    private static final float MAX_HUMIDITY = 65;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_my_pet, R.id.nav_add_pet, R.id.nav_Cal_vaccine)
+                R.id.nav_home, R.id.nav_my_pet, R.id.nav_add_pet, R.id.nav_Cal_vaccine, R.id.nav_schedule)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -107,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onSensorChanged(SensorEvent event) {
             float value = event.values[0];
+            Log.d("Sensor", "Temp value = " + value);
+
+
+            // Bỏ qua nếu giá trị bất thường (cảm biến chưa sẵn sàng)
+            if (value < -100 || value > 100) return;
 
             if (event.sensor.getType() == Sensor.TYPE_AMBIENT_TEMPERATURE) {
                 if (value > MAX_TEMP) {
@@ -125,13 +131,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
-
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
         }
     };
+
 
     private void showNotification(String message, int sensorType) {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

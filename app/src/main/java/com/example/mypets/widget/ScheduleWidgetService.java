@@ -101,7 +101,6 @@ class ScheduleRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                         }
                         Log.d(TAG, "Schedules after processing: " + schedules.size());
                         Collections.sort(schedules, (s1, s2) -> Long.compare(s1.getTime(), s2.getTime()));
-                        notifyWidget();
                         completion.run();
                     }
 
@@ -112,15 +111,6 @@ class ScheduleRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                     }
                 });
     }
-
-    private void notifyWidget() {
-        Log.d(TAG, "Notifying widget ID: " + appWidgetId + " to update");
-        AppWidgetManager.getInstance(context).notifyAppWidgetViewDataChanged(
-                appWidgetId,
-                R.id.list_view
-        );
-    }
-
     @Override
     public RemoteViews getViewAt(int position) {
         Log.d(TAG, "Creating view at position: " + position);

@@ -16,6 +16,9 @@ mpandroidchart = "3.1.0"
 materialCalendar = "2.0.0"
 threetenabp = "1.4.0"
 
+play-services-maps = "18.1.0"
+play-services-location = "21.0.1"
+
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -33,6 +36,9 @@ firebase-messaging = { module = "com.google.firebase:firebase-messaging", versio
 mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
 material-calendarview = { group = "com.github.prolificinteractive", name = "material-calendarview", version.ref = "materialCalendar" }
 threetenabp = { group = "com.jakewharton.threetenabp", name = "threetenabp", version.ref = "threetenabp" }
+
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "play-services-maps" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "play-services-location" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
