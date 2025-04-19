@@ -110,8 +110,6 @@ public class PetInforFragment extends Fragment {
             }
         });
 
-
-
         // Spinner bữa ăn
         String[] buoiAn = {"Sáng", "Trưa", "Tối"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, buoiAn);
@@ -194,10 +192,6 @@ public class PetInforFragment extends Fragment {
                                 etGioAnTheoBuoi.setText(gioToi);
                                 break;
                         }
-
-
-
-
                     }
                 }
 
