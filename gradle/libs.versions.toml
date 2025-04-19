@@ -19,6 +19,12 @@ threetenabp = "1.4.0"
 play-services-maps = "18.1.0"
 play-services-location = "21.0.1"
 
+okhttp = "4.9.3"
+json = "20210307"
+commons-io = "2.11.0"
+
+glide = "4.13.0"
+
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -39,6 +45,13 @@ threetenabp = { group = "com.jakewharton.threetenabp", name = "threetenabp", ver
 
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "play-services-maps" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "play-services-location" }
+
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+json = { group = "org.json", name = "json", version.ref = "json" }
+commons-io = { group = "commons-io", name = "commons-io", version.ref = "commons-io" }
+
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -57,10 +57,8 @@ public class PetHealthFragment extends Fragment {
         lineChart = binding.lineChart;
         recyclerView = binding.recyclerViewHealthRecords;
 
-        // Cấu hình RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        // Khởi tạo Firebase
         database = FirebaseDatabase.getInstance().getReference();
 
         // Lấy dữ liệu từ Firebase
@@ -133,14 +131,14 @@ public class PetHealthFragment extends Fragment {
             // Cấu hình trục X
             XAxis xAxis = lineChart.getXAxis();
             xAxis.setValueFormatter(new DateAxisValueFormatter());
-            xAxis.setGranularity(2678400000f); // 1 tháng (30 ngày tính bằng milliseconds)
+            xAxis.setGranularity(2678400000f);
             xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
             xAxis.setLabelRotationAngle(-45);
-            xAxis.setLabelCount(entries.size(), true); // Hiển thị tất cả nhãn
+            xAxis.setLabelCount(entries.size(), true);
 
             // Đặt phạm vi trục X dựa trên dữ liệu
-            xAxis.setAxisMinimum(entries.get(0).getX()); // Giá trị nhỏ nhất
-            xAxis.setAxisMaximum(entries.get(entries.size() - 1).getX()); // Giá trị lớn nhất
+            xAxis.setAxisMinimum(entries.get(0).getX());
+            xAxis.setAxisMaximum(entries.get(entries.size() - 1).getX());
 
             // Cấu hình trục Y
             YAxis leftAxis = lineChart.getAxisLeft();

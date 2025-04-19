@@ -188,11 +188,11 @@
             android:layout_height="wrap_content"
             android:text="Hồ sơ khám bệnh" />
 
-        <Button
-            android:id="@+id/btn_lichtrinh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lịch trình thú cưng" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_lichtrinh"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Lịch trình thú cưng" />-->
 
         <Button
             android:id="@+id/btn_dexuat"
@@ -206,10 +206,10 @@
             android:layout_height="wrap_content"
             android:text="Tiêm phòng" />
 
-        <Button
-            android:id="@+id/btn_lhbacsi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lh.Bác sĩ/ Dịch vụ thú cưng" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_lhbacsi"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Lh.Bác sĩ/ Dịch vụ thú cưng" />-->
     </LinearLayout>
 </ScrollView>

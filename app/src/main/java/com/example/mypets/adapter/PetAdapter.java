@@ -5,11 +5,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mypets.R;
 import com.example.mypets.data.model.Pet.Pet;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +39,17 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         Pet pet = petList.get(position);
         holder.name.setText(pet.getName());
         holder.loai.setText(pet.getLoai());
+
+        if (pet.getImageUrls() != null && !pet.getImageUrls().isEmpty()) {
+            String firstImageUrl = pet.getImageUrls().get(0);
+            Glide.with(context)
+                    .load(firstImageUrl)
+                    .placeholder(R.drawable.ic_pet) // Ảnh mặc định
+                    .error(R.drawable.ic_pet) // Ảnh lỗi
+                    .into(holder.avatar);
+        } else {
+            holder.avatar.setImageResource(R.drawable.ic_pet);
+        }
 
         // Xử lý khi nhấn nút xóa
         holder.itemView.findViewById(R.id.deleteIcon).setOnClickListener(v -> {
@@ -72,11 +85,14 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
 
     public class PetViewHolder extends RecyclerView.ViewHolder {
         TextView name, loai;
+        ImageView avatar;
 
         public PetViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.textViewName);
             loai = itemView.findViewById(R.id.textViewLoai);
+            avatar = itemView.findViewById(R.id.imageViewAvatar);
+
         }
     }
 

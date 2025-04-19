@@ -3,6 +3,7 @@ package com.example.mypets.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,8 @@ public class ClinicAdapter extends RecyclerView.Adapter<ClinicAdapter.ViewHolder
         Clinic clinic = clinics.get(position);
         holder.tvClinicName.setText(clinic.getName());
         holder.tvDistance.setText(String.format("%.1f km", clinic.getDistance()));
+        holder.imageView.setImageResource(R.drawable.meo);
+
         holder.itemView.setOnClickListener(v -> listener.onItemClick(clinic));
     }
 
@@ -49,11 +52,13 @@ public class ClinicAdapter extends RecyclerView.Adapter<ClinicAdapter.ViewHolder
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvClinicName, tvDistance;
+        ImageView imageView;
 
         ViewHolder(View itemView) {
             super(itemView);
             tvClinicName = itemView.findViewById(R.id.tvClinicName);
             tvDistance = itemView.findViewById(R.id.tvDistance);
+            imageView = itemView.findViewById(R.id.imageView2);
         }
     }
 }

@@ -12,13 +12,25 @@
         android:layout_height="wrap_content"
         android:padding="12dp">
 
+        <!-- Avatar thú cưng -->
+        <ImageView
+            android:id="@+id/imageViewAvatar"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_pet"
+            android:contentDescription="Avatar thú cưng"
+            android:layout_marginEnd="8dp"/>
+
         <!-- Thông tin thú cưng -->
         <LinearLayout
             android:id="@+id/infoLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_alignParentStart="true"
+            android:layout_toEndOf="@id/imageViewAvatar"
             android:layout_centerVertical="true">
 
             <TextView

@@ -1,6 +1,7 @@
 package com.example.mypets.data.model.Pet;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Pet implements Serializable {
     private String id;
@@ -11,8 +12,9 @@ public class Pet implements Serializable {
     private String lichTiem;
     private String lichKiemTraSucKhoe;
     private GioAn gioAn;
-
     private String ownerId;
+    private List<String> imageUrls;
+
 
     public Pet() {
     }
@@ -37,11 +39,27 @@ public class Pet implements Serializable {
         this.lichTiem = lichTiem;
         this.lichKiemTraSucKhoe = lichKiemTraSucKhoe;
     }
+    public Pet(String id, String name, String loai, int tuoi, String gioiTinh, String lichTiem, String lichKiemTraSucKhoe, String ownerId, List<String> imageUrls) {
+        this.id = id;
+        this.name = name;
+        this.loai = loai;
+        this.tuoi = tuoi;
+        this.gioiTinh = gioiTinh;
+        this.lichTiem = lichTiem;
+        this.lichKiemTraSucKhoe = lichKiemTraSucKhoe;
+        this.ownerId = ownerId;
+        this.imageUrls = imageUrls;
+
+    }
 
     public Pet(String name, String ownerId) {
         this.name = name;
         this.ownerId = ownerId;
     }
+
+
+    public List<String> getImageUrls() { return imageUrls; }
+    public void setImageUrls(List<String> imageUrls) { this.imageUrls = imageUrls; }
 
     public String getOwnerId() { return ownerId; }
     public void setOwnerId(String ownerId) { this.ownerId = ownerId; }

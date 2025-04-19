@@ -58,7 +58,11 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
 
-
+    implementation(libs.okhttp)
+    implementation(libs.json)
+    implementation(libs.commons.io)
+    implementation (libs.glide)
+    annotationProcessor (libs.glide.compiler)
 
     implementation(platform("com.google.firebase:firebase-bom:33.12.0"))
     implementation("com.google.firebase:firebase-analytics")

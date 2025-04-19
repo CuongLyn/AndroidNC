@@ -26,6 +26,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
 import com.example.mypets.BroadcastReceiver.AlarmReceiver;
 import com.example.mypets.R;
 import com.example.mypets.data.model.Pet.Pet;
@@ -36,6 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class PetInforFragment extends Fragment {
 
@@ -46,6 +48,9 @@ public class PetInforFragment extends Fragment {
     private Button btnHoSoKhamBenh;
     private FirebaseDatabase database;
     private DatabaseReference petRef;
+
+    private ImageView img1, img2, img3;
+
     private String gioSang = "", gioTrua = "", gioToi = "";
     private Pet currentPet;
 
@@ -64,6 +69,10 @@ public class PetInforFragment extends Fragment {
         spBuoiAn = rootView.findViewById(R.id.spBuoiAn);
         btnVaccination = rootView.findViewById(R.id.btn_tiemphong);
         btnHoSoKhamBenh = rootView.findViewById(R.id.btn_hoso);
+
+        img1 = rootView.findViewById(R.id.img1);
+        img2 = rootView.findViewById(R.id.img2);
+        img3 = rootView.findViewById(R.id.img3);
 
         // Nhận dữ liệu pet
         if (getArguments() != null) {
@@ -134,6 +143,41 @@ public class PetInforFragment extends Fragment {
                         tvLichTiem.setText(pet.getLichTiem());
                         tvLichKiemTra.setText(pet.getLichKiemTraSucKhoe());
 
+                        List<String> imageUrls = pet.getImageUrls();
+                        if (imageUrls != null && !imageUrls.isEmpty()) {
+                            // Ảnh 1
+                            if (imageUrls.size() >= 1) {
+                                Glide.with(requireContext())
+                                        .load(imageUrls.get(0))
+                                        .placeholder(R.drawable.ic_pet)
+                                        .error(R.drawable.ic_add)
+                                        .into(img1);
+                            }
+
+                            // Ảnh 2
+                            if (imageUrls.size() >= 2) {
+                                Glide.with(requireContext())
+                                        .load(imageUrls.get(1))
+                                        .placeholder(R.drawable.ic_pet)
+                                        .error(R.drawable.ic_add)
+                                        .into(img2);
+                            }
+
+                            // Ảnh 3
+                            if (imageUrls.size() >= 3) {
+                                Glide.with(requireContext())
+                                        .load(imageUrls.get(2))
+                                        .placeholder(R.drawable.ic_pet)
+                                        .error(R.drawable.ic_add)
+                                        .into(img3);
+                            }
+                        } else {
+                            // Nếu không có ảnh, hiển thị ảnh mặc định
+                            img1.setImageResource(R.drawable.ic_pet);
+                            img2.setImageResource(R.drawable.ic_pet);
+                            img3.setImageResource(R.drawable.ic_pet);
+                        }
+
                         DataSnapshot gioAnSnapshot = dataSnapshot.child("gioAn");
                         gioSang = gioAnSnapshot.child("sang").getValue(String.class) != null ? gioAnSnapshot.child("sang").getValue(String.class) : "";
                         gioTrua = gioAnSnapshot.child("trua").getValue(String.class) != null ? gioAnSnapshot.child("trua").getValue(String.class) : "";
@@ -150,6 +194,10 @@ public class PetInforFragment extends Fragment {
                                 etGioAnTheoBuoi.setText(gioToi);
                                 break;
                         }
+
+
+
+
                     }
                 }
 
