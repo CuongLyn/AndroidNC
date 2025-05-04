@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <!-- Menu cho người dùng thường -->
+    <group
+        android:id="@+id/group_user"
+        android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_home"
             android:title="@string/menu_home" />
 
-       <item
-           android:id="@+id/nav_my_pet"
-           android:title="My Pet" />
+        <item
+            android:id="@+id/nav_my_pet"
+            android:title="My Pet" />
 
         <item
             android:id="@+id/nav_add_pet"
@@ -26,9 +31,22 @@
 
         <item
             android:id="@+id/nav_clinic"
-            android:title="Phòng Khám" />
+            android:title="Phòng Khám Gần Nhất" />
+    </group>
 
+    <!-- Menu cho phòng khám -->
+    <group
+        android:id="@+id/group_clinic"
+        android:checkableBehavior="single"
+        android:visible="false">
 
+        <item
+            android:id="@+id/phongKhamFragment"
+            android:title="Quản Lý Phòng Khám" />
 
     </group>
+
+    <!-- Menu chung -->
+
+
 </menu>

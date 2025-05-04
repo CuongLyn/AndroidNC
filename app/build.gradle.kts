@@ -45,6 +45,9 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.androidx.activity)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.lifecycle.viewmodel.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -68,6 +71,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-database")
     implementation ("androidx.work:work-runtime:2.9.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.6.2")
+
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 
