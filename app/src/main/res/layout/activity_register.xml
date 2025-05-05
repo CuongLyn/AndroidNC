@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="100dp"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".auth.RegisterActivity">
@@ -29,14 +30,14 @@
                     android:id="@+id/radioUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Người dùng thông thường"
-                    android:checked="true"/>
+                    android:checked="true"
+                    android:text="Người dùng thông thường" />
 
                 <RadioButton
                     android:id="@+id/radioClinic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phòng khám"/>
+                    android:text="Phòng khám" />
             </RadioGroup>
 
             <!-- Common Fields -->
@@ -51,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -65,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Mật khẩu"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- User Specific Fields -->
@@ -86,7 +87,7 @@
                         android:id="@+id/etUserName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Họ và tên"/>
+                        android:hint="Họ và tên" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -100,7 +101,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Số điện thoại"
-                        android:inputType="phone"/>
+                        android:inputType="phone" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -122,7 +123,7 @@
                         android:id="@+id/etClinicName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Tên phòng khám"/>
+                        android:hint="Tên phòng khám" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -135,7 +136,7 @@
                         android:id="@+id/etClinicAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Địa chỉ"/>
+                        android:hint="Địa chỉ" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -149,43 +150,43 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Số điện thoại"
-                        android:inputType="phone"/>
+                        android:inputType="phone" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="4dp">
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etClinicLat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Vĩ độ"
-                            android:inputType="numberDecimal"/>
+                            android:inputType="numberDecimal" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="4dp">
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etClinicLng"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Kinh độ"
-                            android:inputType="numberDecimal"/>
+                            android:inputType="numberDecimal" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
@@ -199,7 +200,7 @@
                         android:id="@+id/etClinicServices"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Dịch vụ (cách nhau bằng dấu phẩy)"/>
+                        android:hint="Dịch vụ (cách nhau bằng dấu phẩy)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -212,30 +213,30 @@
                         android:id="@+id/etWorkingHours"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Giờ làm việc"/>
+                        android:hint="Giờ làm việc" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <!-- Register Button -->
             <Button
                 android:id="@+id/btnRegister"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Đăng ký"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:text="Đăng ký" />
 
             <!-- Login Redirect -->
             <TextView
                 android:id="@+id/txtLoginRedirect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đã có tài khoản? Đăng nhập ngay"
-                android:textColor="?attr/colorPrimary"
-                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_gravity="center_horizontal"/>
+                android:text="Đã có tài khoản? Đăng nhập ngay"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

@@ -72,17 +72,26 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        if (!isAdded()) return;
+
         float value = event.values[0];
 
-        requireActivity().runOnUiThread(() -> {
+
+        if (getActivity() == null) return;
+
+        getActivity().runOnUiThread(() -> {
+            if (!isAdded()) return;
+
             if (event.sensor.getType() == Sensor.TYPE_AMBIENT_TEMPERATURE) {
                 updateTemperatureUI(value);
             } else if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
                 updateHumidityUI(value);
             }
+
             checkEnvironmentalStatus();
         });
     }
+
 
     private void updateTemperatureUI(float temp) {
         textTemperature.setText(String.format("Nhiệt độ: %.1f°C", temp));
@@ -112,13 +121,17 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         } catch (Exception e) {
             // Xử lý lỗi parse
         }
+        if (!isAdded()) return;
 
-        // Cập nhật màu cảnh báo
+        Context context = getContext();
+        if (context == null) return;
+
         if (isTempSafe && isHumiditySafe) {
-            alertCard.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.safe_green));
+            alertCard.setCardBackgroundColor(ContextCompat.getColor(context, R.color.safe_green));
         } else {
-            alertCard.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.danger_red));
+            alertCard.setCardBackgroundColor(ContextCompat.getColor(context, R.color.danger_red));
         }
+
     }
 
     @Override
